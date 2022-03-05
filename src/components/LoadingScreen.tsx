@@ -1,8 +1,16 @@
-import Loader from '../components/Loader/Loader'
+import LoadingDots from './LoadingDots/LoadingDots'
 
 const LoadingScreen = () => (
-	<div className='loading-screen'>
-		<Loader />
+	<div
+		style={{
+			height: '100vh',
+			width: '100 %',
+			display: 'flex',
+			alignItems: 'center',
+			background: '#1e1e1e',
+		}}
+	>
+		<LoadingDots />
 	</div>
 )
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import './Loader.module.scss'
+import './loadingDots-style.scss'
 
-const Loader = () => {
+const LoadingDots = () => {
 	return (
 		<div className='loading'>
 			<div className='circle'></div>
@@ -11,4 +11,4 @@ const Loader = () => {
 	)
 }
 
-export default Loader
+export default LoadingDots
