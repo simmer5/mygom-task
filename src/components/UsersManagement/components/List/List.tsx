@@ -21,7 +21,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
 	return (
 		<>
 			<button className='update' onClick={() => setShowModal(true)}>
-				Update Password
+				Update emai
 			</button>
 			<Modal
 				className='modal'
@@ -29,7 +29,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
 				onRequestClose={() => setShowModal(false)}
 				contentLabel='Example Modal'
 			>
-				<h1>Update Password</h1>
+				<h1>Update email</h1>
 				<input
 					placeholder='new password'
 					className='input'

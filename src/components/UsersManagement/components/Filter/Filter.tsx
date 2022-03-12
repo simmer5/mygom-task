@@ -2,6 +2,9 @@ import { FC } from 'react'
 import { Routes } from '~/constants'
 import { IItem } from '~/services/getUserItems'
 import FilterTab from './components/FilterTab'
+import itemHasWrongEmail from '~/utils/itemHasWrongEmail'
+import oldItems from '~/utils/oldItems'
+import itemHasReusedEmail from '~/utils/itemHasReusedPassword'
 
 import './filter-style.scss'
 
@@ -10,26 +13,30 @@ interface IFilter {
 }
 
 const Filter: FC<IFilter> = ({ items }) => {
-	const weakItemsCount = items.reduce((count, item) => count + 1, 0)
+	const wrongItemsEmailCount = items => itemHasWrongEmail(items).length
 
-	const reusedItemsCount = items.reduce((count, item) => count + 1, 0)
+	const reusedItemsCount = items => {
+		const reused = items.filter(item => itemHasReusedEmail(item, items)).length
+		return reused
+	}
 
-	const oldItemsCount = items
-		.filter(item => {
-			const now = new Date()
-			const date = new Date(item.createdAt)
-			const diff = Math.abs(now.getTime() - date.getTime())
-			const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
-			if (days > 30) return date
-		})
-		.reduce(count => count + 1, 0)
+	const oldItemsCount = items => oldItems(items).length
 
 	return (
 		<div className='filter'>
 			<FilterTab title='all' count={items.length} path={Routes.Users} />
-			<FilterTab title='Wrong' count={weakItemsCount} path={Routes.Weak} />
-			<FilterTab title='Reused' count={reusedItemsCount} path={Routes.Reused} />
-			<FilterTab title='Old' count={oldItemsCount} path={Routes.Old} />
+			<FilterTab
+				title='Wrong'
+				count={wrongItemsEmailCount(items)}
+				path={Routes.Wrong}
+			/>
+			<FilterTab
+				title='Reused'
+				count={reusedItemsCount(items)}
+				path={Routes.Reused}
+			/>
+
+			<FilterTab title='Old' count={oldItemsCount(items)} path={Routes.Old} />
 		</div>
 	)
 }

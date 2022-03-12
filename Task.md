@@ -16,7 +16,7 @@ Our customer support team is receiving a storm of complaints. You're the only gu
 
 - Add loader to login page
 
-### Sukurtas komponentas Loader
+### Sukurtas komponentas Loader ir Loading screenas sutvarkytas
 
 - After Email update page should not be reloaded
 - Add worng emails filter

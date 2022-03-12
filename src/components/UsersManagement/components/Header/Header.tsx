@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import BtnLogOut from '../../../BtnLogOut/BtnLogOut'
 import { IItem } from '~/services/getUserItems'
+import itemHasWrongEmail from '~/utils/itemHasWrongEmail'
 
 import './header-style.scss'
 
@@ -15,7 +16,8 @@ const Header: FC<IHeader> = ({ items, username }) => {
 			<div className='user-section'>
 				<BtnLogOut username={username} />
 			</div>
-			<h1>{`${items.length} Emails are wrong`}</h1>
+
+			<h1>{`${itemHasWrongEmail(items).length} Emails are wrong`}</h1>
 			<span>
 				Email validator to protect your company from bad registrations
 			</span>
